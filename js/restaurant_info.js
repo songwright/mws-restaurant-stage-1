@@ -4,7 +4,7 @@ var newMap;
 /**
  * Initialize map as soon as the page is loaded.
  */
-document.addEventListener('DOMContentLoaded', (event) => {  
+document.addEventListener('DOMContentLoaded', (event) => {
   initMap();
 });
 
@@ -15,7 +15,7 @@ initMap = () => {
   fetchRestaurantFromURL((error, restaurant) => {
     if (error) { // Got an error!
       console.error(error);
-    } else {      
+    } else {
       self.newMap = L.map('map', {
         center: [restaurant.latlng.lat, restaurant.latlng.lng],
         zoom: 16,
@@ -27,14 +27,14 @@ initMap = () => {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
           '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
           'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        id: 'mapbox.streets'    
+        id: 'mapbox.streets'
       }).addTo(newMap);
       fillBreadcrumb();
       DBHelper.mapMarkerForRestaurant(self.restaurant, self.newMap);
     }
   });
-}  
- 
+}
+
 /* window.initMap = () => {
   fetchRestaurantFromURL((error, restaurant) => {
     if (error) { // Got an error!
@@ -148,15 +148,21 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
  */
 createReviewHTML = (review) => {
   const li = document.createElement('li');
+  const div = document.createElement('div'); // Make a div for the header.
   const name = document.createElement('p');
+  name.className = "review-name"; // Assign a class to the review name.
   name.innerHTML = review.name;
-  li.appendChild(name);
+  li.appendChild(div); // Put the div in the list item.
+  div.className = "review-header"; // Assign a class to the div.
+  div.appendChild(name); // Put the name in the div.
 
   const date = document.createElement('p');
+  date.className = "review-date"; // Assign a class to the date.
   date.innerHTML = review.date;
-  li.appendChild(date);
+  div.appendChild(date); // Put the date in the div.
 
   const rating = document.createElement('p');
+  rating.className = "review-rating"; // Assign a class to the rating.
   rating.innerHTML = `Rating: ${review.rating}`;
   li.appendChild(rating);
 
