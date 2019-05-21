@@ -154,6 +154,7 @@ createReviewHTML = (review) => {
   name.innerHTML = review.name;
   li.appendChild(div); // Put the div in the list item.
   div.className = "review-header"; // Assign a class to the div.
+  div.tabIndex = '3'; // Assign a tab index to the div.
   div.appendChild(name); // Put the name in the div.
 
   const date = document.createElement('p');
@@ -166,7 +167,7 @@ createReviewHTML = (review) => {
   rating.innerHTML = `Rating: ${review.rating}`;
   li.appendChild(rating);
 
-  const comments = document.createElement('p');
+  const comments = document.createElement('article'); // Use <article> for a11y
   comments.innerHTML = review.comments;
   li.appendChild(comments);
 
