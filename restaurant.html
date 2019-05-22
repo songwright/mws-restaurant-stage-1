@@ -31,12 +31,12 @@
   <!-- Beginning main -->
   <main id="maincontent">
     <!-- Beginning map -->
-    <section id="map-container">
-      <div id="map"></div>
+    <section role="application" aria-label="Map" id="map-container">
+      <div aria-labelledby="map-container" id="map"></div>
     </section>
     <!-- End map -->
     <!-- Beginning restaurant -->
-    <section id="restaurant-container">
+    <section role="contentinfo" aria-label="Restaurants" id="restaurant-container">
       <h1 id="restaurant-name"></h1>
       <img id="restaurant-img">
       <p id="restaurant-cuisine"></p>
@@ -45,7 +45,7 @@
     </section>
     <!-- end restaurant -->
     <!-- Beginning reviews -->
-    <section id="reviews-container">
+    <section role="contentinfo" aria-label="Reviews" id="reviews-container">
       <ul id="reviews-list"></ul>
     </section>
     <!-- End reviews -->

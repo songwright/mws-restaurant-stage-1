@@ -82,16 +82,23 @@ fetchRestaurantFromURL = (callback) => {
 fillRestaurantHTML = (restaurant = self.restaurant) => {
   const name = document.getElementById('restaurant-name');
   name.innerHTML = restaurant.name;
+  name.setAttribute('role', 'contentinfo'); // Accessibility
+  name.setAttribute('aria-label', 'Restaurant'); // Accessibility
 
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;
+  address.setAttribute('role', 'contentinfo'); // Accessibility
+  address.setAttribute('aria-label', 'Restaurant Address'); // Accessibility
 
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = `Photo of ${restaurant.name}`; // Accessibility
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
+  cuisine.setAttribute('role', 'contentinfo'); // Accessibility
+  cuisine.setAttribute('aria-label', 'Cuisine'); // Accessibility
 
   // fill operating hours
   if (restaurant.operating_hours) {
@@ -154,6 +161,8 @@ createReviewHTML = (review) => {
   name.innerHTML = review.name;
   li.appendChild(div); // Put the div in the list item.
   div.className = "review-header"; // Assign a class to the div.
+  div.setAttribute('role', 'contentinfo'); // Accessibility
+  div.setAttribute('aria-label', `Review by ${review.name}`); // Accessibility
   div.tabIndex = '3'; // Assign a tab index to the div.
   div.appendChild(name); // Put the name in the div.
 
@@ -169,6 +178,7 @@ createReviewHTML = (review) => {
 
   const comments = document.createElement('article'); // Use <article> for a11y
   comments.innerHTML = review.comments;
+  comments.setAttribute('role', 'contentinfo'); // Accessibility
   li.appendChild(comments);
 
   return li;
