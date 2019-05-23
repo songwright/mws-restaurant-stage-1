@@ -30,6 +30,19 @@ self.addEventListener('fetch', function(e) {
   );
 })
 
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.keys().then(function(cacheName) {
+      return Promise.all(
+        cacheName.filter(function(cacheFiles) {
+        }).map(function(cacheFiles) {
+          return caches.delete(cacheFiles);
+        })
+      );
+    })
+  );
+});
+
 const cacheFiles = [
   '/',
   '/index.html',
